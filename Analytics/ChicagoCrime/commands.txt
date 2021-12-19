@@ -1,0 +1,55 @@
+create external table ChicagoCrime (ID int, CrimeDate timestamp, Block string, IUCR int, PrimaryType string, Description string, LocationDescription string, Arrest boolean, Domestic boolean, Beat int, District int, Ward int, CommunityArea int, FBICode int, XCoordinate int, YCoordinate int, Year int, UpdatedOn timestamp, Latitude float, Longitude float)
+row format delimited fields terminated by ','
+location '/user/tz2179/hiveInput/'
+TBLPROPERTIES("timestamp.formats"="MM/dd/yyyy hh:mm:ss a");
+
+select hour(CrimeDate) as h, count(*) as THEFT
+from ChicagoCrime 
+Where PrimaryType='THEFT'
+group by hour(CrimeDate)
+Order by h;
+
+select hour(CrimeDate) as h, count(*) as BATTERY
+from ChicagoCrime 
+Where PrimaryType='BATTERY'
+group by hour(CrimeDate)
+Order by h;
+
+
+select hour(CrimeDate) as h, count(*) as ASSAULT
+from ChicagoCrime 
+Where PrimaryType='ASSAULT'
+group by hour(CrimeDate)
+Order by h;
+
+
+select hour(CrimeDate) as h, count(*) as ROBBERY
+from ChicagoCrime 
+Where PrimaryType='ROBBERY'
+group by hour(CrimeDate)
+Order by h;
+
+
+select hour(CrimeDate) as h, count(*) as STREET
+from ChicagoCrime 
+Where LocationDescription='STREET'
+group by hour(CrimeDate)
+Order by h;
+
+select hour(CrimeDate) as h, count(*) as RESIDENCE
+from ChicagoCrime 
+Where LocationDescription='RESIDENCE'
+group by hour(CrimeDate)
+Order by h;
+
+select hour(CrimeDate) as h, count(*) as APARTMENT
+from ChicagoCrime 
+Where LocationDescription='APARTMENT'
+group by hour(CrimeDate)
+Order by h;
+
+select hour(CrimeDate) as h, count(*) as RETAIL
+from ChicagoCrime 
+Where LocationDescription='SMALL RETAIL STORE'
+group by hour(CrimeDate)
+Order by h;
