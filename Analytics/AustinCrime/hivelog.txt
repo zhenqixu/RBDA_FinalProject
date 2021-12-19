@@ -1,0 +1,202 @@
+[all528@hlog-2 final_project]$ beeline -u jdbc:hive2://hm-1.hpc.nyu.edu:10000/ -n all528
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/opt/cloudera/parcels/CDH-6.3.4-1.cdh6.3.4.p0.6626826/jars/log4j-slf4j-impl-2.8.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/opt/cloudera/parcels/CDH-6.3.4-1.cdh6.3.4.p0.6626826/jars/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Connecting to jdbc:hive2://hm-1.hpc.nyu.edu:10000/
+Connected to: Apache Hive (version 2.1.1-cdh6.3.4)
+Driver: Hive JDBC (version 2.1.1-cdh6.3.4)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+Beeline version 2.1.1-cdh6.3.4 by Apache Hive
+0: jdbc:hive2://hm-1.hpc.nyu.edu:10000/> use all528;
+INFO  : Compiling command(queryId=hive_20211219181214_aa1c5a73-a8c8-4b04-8f15-117da34a4c09): use all528
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20211219181214_aa1c5a73-a8c8-4b04-8f15-117da34a4c09); Time taken: 3.114 seconds
+INFO  : Executing command(queryId=hive_20211219181214_aa1c5a73-a8c8-4b04-8f15-117da34a4c09): use all528
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20211219181214_aa1c5a73-a8c8-4b04-8f15-117da34a4c09); Time taken: 0.002 seconds
+INFO  : OK
+No rows affected (3.149 seconds)
+0: jdbc:hive2://hm-1.hpc.nyu.edu:10000/> create external table final_project (fulldate string, time string, month string, day string, year string, hour string)
+. . . . . . . . . . . . . . . . . . . .> row format delimited fields terminated by ','
+. . . . . . . . . . . . . . . . . . . .> location '/user/all528/final_project/output5';
+INFO  : Compiling command(queryId=hive_20211219181322_f0fa95da-0ad6-41df-9cc8-2c827acac161): create external table final_project (fulldate string, time string, month string, day string, year string, hour string)
+row format delimited fields terminated by ','
+location '/user/all528/final_project/output5'
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20211219181322_f0fa95da-0ad6-41df-9cc8-2c827acac161); Time taken: 0.052 seconds
+INFO  : Executing command(queryId=hive_20211219181322_f0fa95da-0ad6-41df-9cc8-2c827acac161): create external table final_project (fulldate string, time string, month string, day string, year string, hour string)
+row format delimited fields terminated by ','
+location '/user/all528/final_project/output5'
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20211219181322_f0fa95da-0ad6-41df-9cc8-2c827acac161); Time taken: 0.398 seconds
+INFO  : OK
+No rows affected (0.455 seconds)
+0: jdbc:hive2://hm-1.hpc.nyu.edu:10000/> select count(*) as occurences, hour from final_project group by hour order by hour;
+INFO  : Compiling command(queryId=hive_20211219181347_6c471581-4903-458d-a7d7-f9e329c8bcc9): select count(*) as occurences, hour from final_project group by hour order by hour
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:occurences, type:bigint, comment:null), FieldSchema(name:hour, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20211219181347_6c471581-4903-458d-a7d7-f9e329c8bcc9); Time taken: 0.124 seconds
+INFO  : Executing command(queryId=hive_20211219181347_6c471581-4903-458d-a7d7-f9e329c8bcc9): select count(*) as occurences, hour from final_project group by hour order by hour
+WARN  : 
+INFO  : Query ID = hive_20211219181347_6c471581-4903-458d-a7d7-f9e329c8bcc9
+INFO  : Total jobs = 2
+INFO  : Launching Job 1 out of 2
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks not specified. Estimated from input data size: 2
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1639692128015_0359
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://horton.hpc.nyu.edu:8088/proxy/application_1639692128015_0359/
+INFO  : Starting Job = job_1639692128015_0359, Tracking URL = http://horton.hpc.nyu.edu:8088/proxy/application_1639692128015_0359/
+INFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.4-1.cdh6.3.4.p0.6626826/lib/hadoop/bin/hadoop job  -kill job_1639692128015_0359
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 2
+INFO  : 2021-12-19 18:13:54,306 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-12-19 18:14:01,415 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.74 sec
+INFO  : 2021-12-19 18:14:07,502 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 7.39 sec
+INFO  : MapReduce Total cumulative CPU time: 7 seconds 390 msec
+INFO  : Ended Job = job_1639692128015_0359
+INFO  : Launching Job 2 out of 2
+INFO  : Starting task [Stage-2:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:2
+INFO  : Submitting tokens for job: job_1639692128015_0360
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://horton.hpc.nyu.edu:8088/proxy/application_1639692128015_0360/
+INFO  : Starting Job = job_1639692128015_0360, Tracking URL = http://horton.hpc.nyu.edu:8088/proxy/application_1639692128015_0360/
+INFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.4-1.cdh6.3.4.p0.6626826/lib/hadoop/bin/hadoop job  -kill job_1639692128015_0360
+INFO  : Hadoop job information for Stage-2: number of mappers: 2; number of reducers: 1
+INFO  : 2021-12-19 18:14:16,034 Stage-2 map = 0%,  reduce = 0%
+INFO  : 2021-12-19 18:14:21,107 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 3.15 sec
+INFO  : 2021-12-19 18:14:27,188 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 5.18 sec
+INFO  : MapReduce Total cumulative CPU time: 5 seconds 180 msec
+INFO  : Ended Job = job_1639692128015_0360
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 2   Cumulative CPU: 7.39 sec   HDFS Read: 69574766 HDFS Write: 796 HDFS EC Read: 0 SUCCESS
+INFO  : Stage-Stage-2: Map: 2  Reduce: 1   Cumulative CPU: 5.18 sec   HDFS Read: 8682 HDFS Write: 630 HDFS EC Read: 0 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 12 seconds 570 msec
+INFO  : Completed executing command(queryId=hive_20211219181347_6c471581-4903-458d-a7d7-f9e329c8bcc9); Time taken: 40.299 seconds
+INFO  : OK
++-------------+-------+
+| occurences  | hour  |
++-------------+-------+
+| 79130       |       |
+| 39376       | 0     |
+| 114788      | 1     |
+| 83876       | 10    |
+| 82309       | 11    |
+| 161786      | 12    |
+| 88965       | 13    |
+| 96093       | 14    |
+| 102027      | 15    |
+| 108278      | 16    |
+| 127269      | 17    |
+| 135996      | 18    |
+| 126272      | 19    |
+| 101206      | 2     |
+| 131038      | 20    |
+| 135510      | 21    |
+| 151017      | 22    |
+| 135304      | 23    |
+| 76          | 24    |
+| 66152       | 3     |
+| 42795       | 4     |
+| 32600       | 5     |
+| 35075       | 6     |
+| 53199       | 7     |
+| 72718       | 8     |
+| 72931       | 9     |
++-------------+-------+
+26 rows selected (40.462 seconds)
+0: jdbc:hive2://hm-1.hpc.nyu.edu:10000/> select count(*) as occurences, month from final_project group by month order by occurences desc
+. . . . . . . . . . . . . . . . . . . .> ;
+INFO  : Compiling command(queryId=hive_20211219181447_0f1f7725-7fbc-4e65-bf3b-4260407d94ef): select count(*) as occurences, month from final_project group by month order by occurences desc
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:occurences, type:bigint, comment:null), FieldSchema(name:month, type:string, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20211219181447_0f1f7725-7fbc-4e65-bf3b-4260407d94ef); Time taken: 0.12 seconds
+INFO  : Executing command(queryId=hive_20211219181447_0f1f7725-7fbc-4e65-bf3b-4260407d94ef): select count(*) as occurences, month from final_project group by month order by occurences desc
+WARN  : 
+INFO  : Query ID = hive_20211219181447_0f1f7725-7fbc-4e65-bf3b-4260407d94ef
+INFO  : Total jobs = 2
+INFO  : Launching Job 1 out of 2
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks not specified. Estimated from input data size: 2
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:1
+INFO  : Submitting tokens for job: job_1639692128015_0361
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://horton.hpc.nyu.edu:8088/proxy/application_1639692128015_0361/
+INFO  : Starting Job = job_1639692128015_0361, Tracking URL = http://horton.hpc.nyu.edu:8088/proxy/application_1639692128015_0361/
+INFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.4-1.cdh6.3.4.p0.6626826/lib/hadoop/bin/hadoop job  -kill job_1639692128015_0361
+INFO  : Hadoop job information for Stage-1: number of mappers: 1; number of reducers: 2
+INFO  : 2021-12-19 18:14:54,467 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-12-19 18:15:01,563 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 3.82 sec
+INFO  : 2021-12-19 18:15:07,641 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 7.46 sec
+INFO  : MapReduce Total cumulative CPU time: 7 seconds 460 msec
+INFO  : Ended Job = job_1639692128015_0361
+INFO  : Launching Job 2 out of 2
+INFO  : Starting task [Stage-2:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:2
+INFO  : Submitting tokens for job: job_1639692128015_0362
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://horton.hpc.nyu.edu:8088/proxy/application_1639692128015_0362/
+INFO  : Starting Job = job_1639692128015_0362, Tracking URL = http://horton.hpc.nyu.edu:8088/proxy/application_1639692128015_0362/
+INFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.4-1.cdh6.3.4.p0.6626826/lib/hadoop/bin/hadoop job  -kill job_1639692128015_0362
+INFO  : Hadoop job information for Stage-2: number of mappers: 2; number of reducers: 1
+INFO  : 2021-12-19 18:15:16,056 Stage-2 map = 0%,  reduce = 0%
+INFO  : 2021-12-19 18:15:21,130 Stage-2 map = 100%,  reduce = 0%, Cumulative CPU 2.95 sec
+INFO  : 2021-12-19 18:15:26,197 Stage-2 map = 100%,  reduce = 100%, Cumulative CPU 4.91 sec
+INFO  : MapReduce Total cumulative CPU time: 4 seconds 910 msec
+INFO  : Ended Job = job_1639692128015_0362
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 1  Reduce: 2   Cumulative CPU: 7.46 sec   HDFS Read: 69574840 HDFS Write: 501 HDFS EC Read: 0 SUCCESS
+INFO  : Stage-Stage-2: Map: 2  Reduce: 1   Cumulative CPU: 4.91 sec   HDFS Read: 8390 HDFS Write: 368 HDFS EC Read: 0 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 12 seconds 370 msec
+INFO  : Completed executing command(queryId=hive_20211219181447_0f1f7725-7fbc-4e65-bf3b-4260407d94ef); Time taken: 39.227 seconds
+INFO  : OK
++-------------+--------+
+| occurences  | month  |
++-------------+--------+
+| 210511      | 05     |
+| 209204      | 08     |
+| 208942      | 07     |
+| 204434      | 03     |
+| 203117      | 10     |
+| 201704      | 04     |
+| 200973      | 06     |
+| 200111      | 09     |
+| 196032      | 01     |
+| 181871      | 12     |
+| 181196      | 11     |
+| 177690      | 02     |
+| 1           | Oc     |
++-------------+--------+
+13 rows selected (39.356 seconds)
