@@ -1,0 +1,143 @@
+[all528@hlog-1 ~]$ beeline -u jdbc:hive2://hm-1.hpc.nyu.edu:10000/ -n all528
+WARNING: Use "yarn jar" to launch YARN applications.
+SLF4J: Class path contains multiple SLF4J bindings.
+SLF4J: Found binding in [jar:file:/opt/cloudera/parcels/CDH-6.3.4-1.cdh6.3.4.p0.6626826/jars/log4j-slf4j-impl-2.8.2.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: Found binding in [jar:file:/opt/cloudera/parcels/CDH-6.3.4-1.cdh6.3.4.p0.6626826/jars/slf4j-log4j12-1.7.25.jar!/org/slf4j/impl/StaticLoggerBinder.class]
+SLF4J: See http://www.slf4j.org/codes.html#multiple_bindings for an explanation.
+SLF4J: Actual binding is of type [org.apache.logging.slf4j.Log4jLoggerFactory]
+Connecting to jdbc:hive2://hm-1.hpc.nyu.edu:10000/
+Connected to: Apache Hive (version 2.1.1-cdh6.3.4)
+Driver: Hive JDBC (version 2.1.1-cdh6.3.4)
+Transaction isolation: TRANSACTION_REPEATABLE_READ
+Beeline version 2.1.1-cdh6.3.4 by Apache Hive
+0: jdbc:hive2://hm-1.hpc.nyu.edu:10000/> use all528;
+INFO  : Compiling command(queryId=hive_20211128223823_86f40668-6fed-46b5-a904-486260dafb50): use all528
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20211128223823_86f40668-6fed-46b5-a904-486260dafb50); Time taken: 0.236 seconds
+INFO  : Executing command(queryId=hive_20211128223823_86f40668-6fed-46b5-a904-486260dafb50): use all528
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20211128223823_86f40668-6fed-46b5-a904-486260dafb50); Time taken: 0.002 seconds
+INFO  : OK
+No rows affected (0.273 seconds)
+0: jdbc:hive2://hm-1.hpc.nyu.edu:10000/> show tables;
+INFO  : Compiling command(queryId=hive_20211128223829_d8c9978a-f740-4fbc-ae17-c5e5339a7dca): show tables
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20211128223829_d8c9978a-f740-4fbc-ae17-c5e5339a7dca); Time taken: 0.032 seconds
+INFO  : Executing command(queryId=hive_20211128223829_d8c9978a-f740-4fbc-ae17-c5e5339a7dca): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20211128223829_d8c9978a-f740-4fbc-ae17-c5e5339a7dca); Time taken: 0.021 seconds
+INFO  : OK
++-----------+
+| tab_name  |
++-----------+
+| w1        |
+| w3        |
++-----------+
+2 rows selected (0.086 seconds)
+0: jdbc:hive2://hm-1.hpc.nyu.edu:10000/> create external table finalproject (data1 string, time int)
+. . . . . . . . . . . . . . . . . . . .> row format delimited fields terminated by ','
+. . . . . . . . . . . . . . . . . . . .> location '/user/all528/final_project/output';
+INFO  : Compiling command(queryId=hive_20211128225037_69c1455d-dc1f-40a2-b461-bac53476e9d1): create external table finalproject (data1 string, time int)
+row format delimited fields terminated by ','
+location '/user/all528/final_project/output'
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:null, properties:null)
+INFO  : Completed compiling command(queryId=hive_20211128225037_69c1455d-dc1f-40a2-b461-bac53476e9d1); Time taken: 0.043 seconds
+INFO  : Executing command(queryId=hive_20211128225037_69c1455d-dc1f-40a2-b461-bac53476e9d1): create external table finalproject (data1 string, time int)
+row format delimited fields terminated by ','
+location '/user/all528/final_project/output'
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20211128225037_69c1455d-dc1f-40a2-b461-bac53476e9d1); Time taken: 0.074 seconds
+INFO  : OK
+No rows affected (0.124 seconds)
+0: jdbc:hive2://hm-1.hpc.nyu.edu:10000/> show tables;
+INFO  : Compiling command(queryId=hive_20211128225119_db30a108-2e29-4601-a1ed-b43370728f36): show tables
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:tab_name, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20211128225119_db30a108-2e29-4601-a1ed-b43370728f36); Time taken: 0.033 seconds
+INFO  : Executing command(queryId=hive_20211128225119_db30a108-2e29-4601-a1ed-b43370728f36): show tables
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20211128225119_db30a108-2e29-4601-a1ed-b43370728f36); Time taken: 0.021 seconds
+INFO  : OK
++---------------+
+|   tab_name    |
++---------------+
+| finalproject  |
+| w1            |
+| w3            |
++---------------+
+3 rows selected (0.065 seconds)
+0: jdbc:hive2://hm-1.hpc.nyu.edu:10000/> describe finalproject;
+INFO  : Compiling command(queryId=hive_20211128225124_fcd41cb3-3c59-43e1-8c91-29ce7393448a): describe finalproject
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:col_name, type:string, comment:from deserializer), FieldSchema(name:data_type, type:string, comment:from deserializer), FieldSchema(name:comment, type:string, comment:from deserializer)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20211128225124_fcd41cb3-3c59-43e1-8c91-29ce7393448a); Time taken: 0.046 seconds
+INFO  : Executing command(queryId=hive_20211128225124_fcd41cb3-3c59-43e1-8c91-29ce7393448a): describe finalproject
+INFO  : Starting task [Stage-0:DDL] in serial mode
+INFO  : Completed executing command(queryId=hive_20211128225124_fcd41cb3-3c59-43e1-8c91-29ce7393448a); Time taken: 0.003 seconds
+INFO  : OK
++-----------+------------+----------+
+| col_name  | data_type  | comment  |
++-----------+------------+----------+
+| data1     | string     |          |
+| time      | int        |          |
++-----------+------------+----------+
+2 rows selected (0.059 seconds)
+0: jdbc:hive2://hm-1.hpc.nyu.edu:10000/> select * from finalproject order by rand() limit 15;
+INFO  : Compiling command(queryId=hive_20211128225248_b9f7a528-b828-490b-ba3e-5cc713ce92a6): select * from finalproject order by rand() limit 15
+INFO  : Semantic Analysis Completed
+INFO  : Returning Hive schema: Schema(fieldSchemas:[FieldSchema(name:finalproject.data1, type:string, comment:null), FieldSchema(name:finalproject.time, type:int, comment:null)], properties:null)
+INFO  : Completed compiling command(queryId=hive_20211128225248_b9f7a528-b828-490b-ba3e-5cc713ce92a6); Time taken: 0.134 seconds
+INFO  : Executing command(queryId=hive_20211128225248_b9f7a528-b828-490b-ba3e-5cc713ce92a6): select * from finalproject order by rand() limit 15
+WARN  : 
+INFO  : Query ID = hive_20211128225248_b9f7a528-b828-490b-ba3e-5cc713ce92a6
+INFO  : Total jobs = 1
+INFO  : Launching Job 1 out of 1
+INFO  : Starting task [Stage-1:MAPRED] in serial mode
+INFO  : Number of reduce tasks determined at compile time: 1
+INFO  : In order to change the average load for a reducer (in bytes):
+INFO  :   set hive.exec.reducers.bytes.per.reducer=<number>
+INFO  : In order to limit the maximum number of reducers:
+INFO  :   set hive.exec.reducers.max=<number>
+INFO  : In order to set a constant number of reducers:
+INFO  :   set mapreduce.job.reduces=<number>
+INFO  : number of splits:3
+INFO  : Submitting tokens for job: job_1622566668497_38289
+INFO  : Executing with tokens: []
+INFO  : The url to track the job: http://horton.hpc.nyu.edu:8088/proxy/application_1622566668497_38289/
+INFO  : Starting Job = job_1622566668497_38289, Tracking URL = http://horton.hpc.nyu.edu:8088/proxy/application_1622566668497_38289/
+INFO  : Kill Command = /opt/cloudera/parcels/CDH-6.3.4-1.cdh6.3.4.p0.6626826/lib/hadoop/bin/hadoop job  -kill job_1622566668497_38289
+INFO  : Hadoop job information for Stage-1: number of mappers: 3; number of reducers: 1
+INFO  : 2021-11-28 22:52:54,569 Stage-1 map = 0%,  reduce = 0%
+INFO  : 2021-11-28 22:52:59,701 Stage-1 map = 33%,  reduce = 0%, Cumulative CPU 8.26 sec
+INFO  : 2021-11-28 22:53:00,713 Stage-1 map = 100%,  reduce = 0%, Cumulative CPU 23.55 sec
+INFO  : 2021-11-28 22:53:06,783 Stage-1 map = 100%,  reduce = 100%, Cumulative CPU 25.63 sec
+INFO  : MapReduce Total cumulative CPU time: 25 seconds 630 msec
+INFO  : Ended Job = job_1622566668497_38289
+INFO  : MapReduce Jobs Launched: 
+INFO  : Stage-Stage-1: Map: 3  Reduce: 1   Cumulative CPU: 25.63 sec   HDFS Read: 37106460 HDFS Write: 500 HDFS EC Read: 0 SUCCESS
+INFO  : Total MapReduce CPU Time Spent: 25 seconds 630 msec
+INFO  : Completed executing command(queryId=hive_20211128225248_b9f7a528-b828-490b-ba3e-5cc713ce92a6); Time taken: 19.363 seconds
+INFO  : OK
++---------------------+--------------------+
+| finalproject.data1  | finalproject.time  |
++---------------------+--------------------+
+| 05/22/2011          | 22                 |
+| 05/11/2011          | 1155               |
+| 10/01/2007          | 0                  |
+| 08/02/2018          | 1330               |
+| 08/02/2011          | 2200               |
+| 10/03/2013          | 1200               |
+| 10/23/2007          | 1500               |
+| 07/19/2020          | 1400               |
+| 06/14/2017          | 2019               |
+| 08/15/2005          | 2200               |
+| 06/18/2014          | 1620               |
+| 04/01/2019          | 610                |
+| 11/20/2016          | 852                |
+| 04/21/2013          | 2259               |
+| 05/27/2011          | 2018               |
++---------------------+--------------------+
+15 rows selected (19.513 seconds)
